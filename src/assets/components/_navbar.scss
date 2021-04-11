@@ -1,0 +1,15 @@
+.navbar {
+  // 漸變顏色
+  transition: 0.5s;
+  background: rgba(252, 221, 221, 1) 92% !important;
+  text-align: right;
+}
+
+.nav-item a {
+  font-size: $heading-font-xs;
+  color: $color_white !important;
+  font-weight: 600;
+  &:hover {
+    color: $color_pink_dark !important;
+  }
+}
