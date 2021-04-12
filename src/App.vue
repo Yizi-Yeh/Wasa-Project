@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar/>
-    <router-view/>
+    <Navbar />
+    <router-view />
   </div>
 </template>
 <script>
@@ -13,9 +13,11 @@ export default {
   components: {
     Navbar
   },
+  computed: {
+    ...mapActions(['fetchAlbumInfo'])
+  },
   methods: {
-    ...mapActions(['fetchAlbumInfo']),
-    mounted () {
+    created () {
       this.fetchAlbumInfo()
     }
   }

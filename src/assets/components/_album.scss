@@ -19,10 +19,6 @@
   border: none;
   background: rgba(255, 255, 255, 0.4);
   padding: 10px 10px;
-  &:hover {
-    cursor: pointer;
-    transition: #fff 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
-  }
 }
 .album-lists {
   @include flex(column, center, center);
@@ -36,7 +32,8 @@
     @include flex(flex, center, center);
     &:hover {
       cursor: pointer;
-      transition: #fff 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+      background-color: $color_yellow;
+      transition: 0.3s;
     }
     &-img {
     }

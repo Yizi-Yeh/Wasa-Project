@@ -3,7 +3,7 @@
     id="section-album"
     class="section-album"
   >
-    <div class="container album-container">
+    <div class="container album-container ">
       <div class="input-group">
         <select
           v-model="currCategory"

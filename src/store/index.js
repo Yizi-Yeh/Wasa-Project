@@ -44,11 +44,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchAlbumInfo () {
-      const api = 'https://api.mocki.io/v1/33538511'
+    fetchAlbumInfo ({ commit }) {
+      const api = 'https://api.mocki.io/v1/146851dd'
       Axios.get(api).then((response) => {
         if (response) {
-          this.$store.commit('setAlbumInfo', response.data)
+          commit('setAlbumInfo', response.data)
           console.log(response.data)
         }
       })
