@@ -1,35 +1,52 @@
 <template>
-  <section id="section-album"
-  class="section-album">
+  <section
+    id="section-album"
+    class="section-album"
+  >
     <div class="input-group">
       <select v-model="currCategory">
-        <option selected>ALL</option>
+        <option selected>
+          ALL
+        </option>
         <option
-        v-for="C in categoryList"
-        :key="C">{{ C }}</option>
-  </select>
+          v-for="(category,idx) in categoryList"
+          :key="idx"
+        >
+          {{ category }}
+        </option>
+      </select>
       <ul class="Album-lists">
-      <li class="Album-info wraps"
-        v-for="item in currAlbum" :key="item">
+        <li
+          v-for="item in currAlbum"
+          :key="item"
+          class="Album-info wraps"
+        >
+          <div class="album-info">
+            <i class="fas fa-landmark" />
+            <img
+              :src="item.images"
+              width="250px"
+              alt=""
+            >
+          </div>
 
-        <div class="album-info">
-          <i class="fas fa-landmark"></i>
-          <span>ALBUM TITLE: {{ item.title }}</span>
-        </div>
+          <div class="album-info">
+            <i class="fas fa-landmark" />
+            <span>ALBUM TITLE: {{ item.title }}</span>
+          </div>
 
-        <div class="album-info">
-         <i class="fas fa-map-marked-alt"></i>
-          <span>ALBUM DESCRIPTION: {{ item.description }}</span>
-        </div>
+          <div class="album-info">
+            <i class="fas fa-map-marked-alt" />
+            <span>ALBUM DESCRIPTION: {{ item.description }}</span>
+          </div>
 
-        <div class="album-info">
-          <i class="far fa-calendar-alt"></i>
-          公告日期: {{ item.release }}
-        </div>
-
-      </li>
-    </ul>
-</div>
+          <div class="album-info">
+            <i class="far fa-calendar-alt" />
+            公告日期: {{ item.release }}
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 

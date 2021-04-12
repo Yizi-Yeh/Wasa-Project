@@ -15,14 +15,24 @@ export default new Vuex.Store({
   getters: {
     // 類別清單
     categoryList (state) {
-      return state.album.map(item => item.category)
+      const { album } = state
+      const category = []
+      for (const c of album) {
+        category.push(c.category)
+      }
+      const nonrepeat = [...(new Set(category))]
+      return nonrepeat
     },
     // 使用者選擇類別 === 預設類別
     currAlbum (state) {
       const { album } = state
-      return album.filter((item) =>
-        item.category === state.currCategory
-      )
+      if (state.currCategory !== 'ALL') {
+        return album.filter((item) =>
+          item.category === state.currCategory
+        )
+      } else {
+        return album
+      }
     }
   },
   mutations: {
