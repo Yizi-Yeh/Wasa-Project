@@ -1,4 +1,4 @@
-#section-album {
+#section-cart {
   position: relative;
   text-align: center;
   background-image: linear-gradient(
@@ -7,20 +7,11 @@
     rgba(252, 221, 221, 1) 92%
   );
 }
-.input-group {
+.cart-container {
   @include flex(column, center, center);
 }
-.album-container {
-  @include flex(column, center, center);
-}
-.album-select {
-  width: calc(100% - 500px);
-  margin-bottom: 1rem;
-  border: none;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 10px 10px;
-}
-.album-lists {
+
+.cart-lists {
   @include flex(column, center, center);
   &-info {
     margin-bottom: 0.8rem;

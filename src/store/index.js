@@ -10,7 +10,8 @@ export default new Vuex.Store({
     // 使用者所選 Album類別，預設為ALL
     currCategory: 'ALL',
     // 存放API回傳的album
-    album: []
+    album: [],
+    cart: []
   },
   getters: {
     // 類別清單
@@ -33,6 +34,9 @@ export default new Vuex.Store({
       } else {
         return album
       }
+    },
+    carts (state) {
+      return state.cart
     }
   },
   mutations: {
@@ -41,6 +45,12 @@ export default new Vuex.Store({
     },
     setAlbumInfo (state, payload) {
       state.album = payload
+    },
+    addCart (state, payload) {
+      state.cart.push(payload)
+    },
+    delCart (state, index) {
+      state.cart.splice(index, 1)
     }
   },
   actions: {

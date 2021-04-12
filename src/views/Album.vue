@@ -52,8 +52,17 @@
               </div>
               <br>
               <div class="album-lists-info-price">
-                <i class="fas fa-dollar-sign" />
-                值段：<br> {{ item.price }}
+                值段（税込）：<br> {{ item.price | commaFormat | dollarSign }}
+              </div>
+              <br>
+              <div>
+                <button
+                  type="button"
+                  class="album-lists-info-btn btn btn-outline-dark w-25"
+                  @click="addCart(item)"
+                >
+                  放入購物車
+                </button>
               </div>
             </div>
           </li>
@@ -64,7 +73,17 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapState, mapGetters } from 'vuex'
+Vue.filter('dollarSign', function (n) {
+  return `¥ ${n}`
+})
+Vue.filter('commaFormat', (value) => {
+  if (!value) return ''
+  return value.toString().replace(/^(-?\d+?)((?:\d{3})+)(?=\.\d+$|$)/, function (all, pre, digital) {
+    return pre + digital.replace(/\d{3}/g, ',$&')
+  })
+})
 export default {
   name: 'Album',
   data () {
@@ -84,7 +103,16 @@ export default {
     ...mapGetters(['categoryList', 'currAlbum'])
   },
   methods: {
-
+    addCart (item) {
+      if (item) {
+        this.$swal({
+          icon: 'success',
+          title: '已放入購物車'
+        })
+        this.$store.commit('addCart', item)
+        console.log(item)
+      }
+    }
   }
 }
 </script>

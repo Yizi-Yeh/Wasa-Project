@@ -1,38 +1,77 @@
 <template>
   <div class="home">
-        <header id="header_index">
+    <header id="header_index">
       <div class="container">
-            <div class="music-container" :class="{'play': this.isPlaying == true}" id="music-container">
-      <div class="music-info">
-        <h5 id="title">{{ songs[songsIndex] }}</h5>
-        <div class="progress-container" id="progress-container">
-          <div class="progress" id="progress"></div>
-        </div>
-      </div>
-      <audio   id="audio">
-         <source :src='`./music/${songs}`' type='audio/ogg' />
-      </audio>
-      <div class="img-container">
-        <img :src="`./img/${songsIndex}.jpg`" alt="music-cover" id="cover" />
-      </div>
+        <div
+          id="music-container"
+          class="music-container"
+          :class="{'play': this.isPlaying == true}"
+        >
+          <div class="music-info">
+            <h5 id="title">
+              {{ songs[songsIndex] }}
+            </h5>
+            <div
+              id="progress-container"
+              class="progress-container"
+            >
+              <div
+                id="progress"
+                class="progress"
+              />
+            </div>
+          </div>
+          <audio id="audio">
+            <source
+              :src="`./music/${songs}`"
+              type="audio/ogg"
+            >
+          </audio>
+          <div class="img-container">
+            <img
+              id="cover"
+              :src="`./img/${songsIndex}.jpg`"
+              alt="music-cover"
+            >
+          </div>
 
-      <div class="navigation">
-        <button id="prev" @click="playprev" class="action-btn">
-          <i class="fas fa-backward"> </i>
-        </button>
-        <button id="play" @click="playsong" class="action-btn action-btn-big">
-          <i v-show="!isPlaying"  class="fas fa-play"
-          > </i>
-        </button>
-        <button id="pasuse" @click="pausesong" class="action-btn action-btn-big">
-          <i v-show="isPlaying"  class="fas fa-pause"
-          > </i>
-        </button>
-        <button id="next" @click="playnext" class="action-btn">
-          <i class="fas fa-forward"> </i>
-        </button>
-      </div>
-    </div>
+          <div class="navigation">
+            <button
+              id="prev"
+              class="action-btn"
+              @click="playprev"
+            >
+              <i class="fas fa-backward" />
+            </button>
+            <button
+              id="play"
+              class="action-btn action-btn-big"
+              @click="playsong"
+            >
+              <i
+                v-show="!isPlaying"
+                class="fas fa-play"
+              />
+            </button>
+            <button
+              id="pasuse"
+              class="action-btn action-btn-big"
+              @click="pausesong"
+            >
+              <i
+                v-show="isPlaying"
+                class="fas fa-pause"
+              />
+            </button>
+            <button
+              id="next"
+              class="action-btn"
+              @click="playnext"
+            >
+              <i class="fas fa-forward" />
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   </div>
@@ -52,17 +91,17 @@ export default {
   },
   methods: {
     playsong () {
-      this.isPlaying = true 
+      this.isPlaying = true
       const song = this.songs[this.songsIndex]
       const audio = new Audio()
       audio.src = `./music/${song}.mp3`
       audio.play()
     },
     pausesong () {
-      this.isPlaying = false 
+      this.isPlaying = false
       const audio = new Audio()
       audio.pause()
-      audio.currentTime = 0;
+      audio.currentTime = 0
     },
     playnext () {
       this.songsIndex++
@@ -75,20 +114,7 @@ export default {
       if (this.songsIndex < 0) {
         this.songsIndex = this.songs.length - 1
       }
-    },
-    updateProgress (e){
-    // 從事件物件(e)中解構出 duration及currentTime
-    const {duration, currentTime} = e.srcElement
-    console.log(e)
-    const progressPercent = (currentTime / duration) *100
-    progress.style.width = `${progressPercent}%`
-    },
-    setProgress(e){
-    const width =  this.clientWidth
-    const clickX = e.offsetX
-    const duration = audio.duration
-    audio.currentTime = (clickX/width)*duration
-}
+    }
   }
 }
 </script>
