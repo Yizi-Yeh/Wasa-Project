@@ -3,61 +3,86 @@
     id="section-cart"
     class="section-cart"
   >
-    <div class="container cart-container ">
-      <div class="input-group">
-        <ul class="cart-lists">
-          <li
+    <div class="container cart-container">
+      <div class="row">
+        <div class="cart-lists col-sm-7 col-md-8">
+          <div
             v-for="item in carts"
             :key="item"
-            class="cart-lists-info"
+            class="cart-lists-info w-100"
           >
-            <div class="cart-lists-info-img">
-              <i class="fas fa-landmark" />
-              <img
-                :src="item.images"
-                width="250px"
-                alt=""
-              >
+            <div class="panel-heading">
+              <div class="panel-title" />
             </div>
-            <br>
-            <div class="cart-lists-info-content">
-              <div class="cart-lists-info-title">
-                <h5> {{ item.title }}</h5>
-              </div>
-              <br>
-              <div class="cart-lists-info-intro">
-                <i class="fas fa-compact-disc" />
-                <span> 紹介： <br> {{ item.description }}</span>
-              </div>
-              <br>
-              <div class="cart-lists-info-release">
-                <i class="far fa-calendar-alt" />
-                リリース：
-                <br> {{ item.release }}
-              </div>
-              <br>
-              <div class="cart-lists-info-price">
-                值段（税込）：<br> {{ item.price | commaFormat | dollarSign }}
-              </div>
-              <br>
-              <div>
-                <button
-                  type="button"
-                  class="cart-lists-info-btn btn btn-outline-dark w-25"
-                  @click="addCart(item)"
-                >
-                  放入購物車
-                </button>
+            <div class="panel-body">
+              <div class="cart-container">
+                <div class="cart-heading" />
+                <div class="cart-body">
+                  <div class="cart-item">
+                    <div class="img mb-3">
+                      <img
+                        :src="item.images"
+                        height="150px"
+                      >
+                    </div>
+                    <div class="detail">
+                      {{ item.title }}
+                    </div>
+                    <div class="price">
+                      価格（税込）{{ item.price | commaFormat | dollarSign }}
+                    </div>
+                    <div class="btn">
+                      <button
+                        type="button"
+                        class="album-lists-info-btn btn btn-outline-dark "
+                        @click="delCart(item)"
+                      >
+                        刪除
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+        <div
+          class="price-lists col-sm-4 col-md-4 h-50 w-100"
+        >
+          <div
+            class="
+          panel
+          w-100"
+          >
+            <div class="panel-body">
+              <div class="summary">
+                <div class="total">
+                  <span>合計：</span>
+                  <span>円</span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <div class="text-center">
+                <div class="btn">
+                  <button
+                    type="button"
+                    class="album-lists-info-btn btn btn-outline-dark"
+                  >
+                    結帳
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Vue from 'vue'
 Vue.filter('dollarSign', function (n) {
   return `¥ ${n}`
@@ -75,12 +100,10 @@ export default {
     }
   },
   computed: {
-    carts () {
-      return this.$store.getters.carts
-    }
+    ...mapGetters(['carts'])
   },
   methods: {
-    del (index) {
+    delCart (index) {
       this.$store.commit('delCart', index)
     }
   }

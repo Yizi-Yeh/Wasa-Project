@@ -7,9 +7,6 @@
     rgba(252, 221, 221, 1) 92%
   );
 }
-.cart-container {
-  @include flex(column, center, center);
-}
 
 .cart-lists {
   @include flex(column, center, center);
@@ -32,11 +29,6 @@
       @include flex(column, center, center);
       padding-bottom: 0;
     }
-    &-intro {
-      padding: 0 80px;
-    }
-    &-release {
-    }
     &-price {
     }
     &-btn {
@@ -45,5 +37,20 @@
         color: $color_white !important;
       }
     }
+  }
+}
+
+.price-lists {
+  margin-bottom: 0.8rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 3rem;
+  opacity: 1 !important;
+  padding: 50px 50px;
+  @include flex(flex, center, center);
+  &:hover {
+    cursor: pointer;
+    background-color: $color_yellow;
+    transition: 0.3s;
   }
 }

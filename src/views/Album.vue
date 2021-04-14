@@ -52,7 +52,7 @@
               </div>
               <br>
               <div class="album-lists-info-price">
-                值段（税込）：<br> {{ item.price | commaFormat | dollarSign }}
+                価格（税込）：<br> {{ item.price | commaFormat | dollarSign }}
               </div>
               <br>
               <div>
